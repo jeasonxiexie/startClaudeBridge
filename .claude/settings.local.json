@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(mkdir:*)",
+      "Bash(chmod:*)",
+      "Bash(sudo cp:*)",
+      "Bash(python3:*)",
+      "Bash(echo:*)"
+    ],
+    "deny": []
+  }
+}
