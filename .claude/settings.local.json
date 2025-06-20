@@ -6,7 +6,13 @@
       "Bash(chmod:*)",
       "Bash(sudo cp:*)",
       "Bash(python3:*)",
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Bash(ls -F ~/.claudebridge/)",
+      "Bash(cat ~/.claudebridge/config.json)",
+      "Bash(ls -a)",
+      "Bash(git commit -m \"$(cat <<'EOF'\n   Add --resume mode to startClaudeBridge\n\n   Adds a new command-line argument `--resume` to the startClaudeBridge script.\n   When this argument is used, the script will execute `claude-bridge --resume`,\n   allowing users to resume their last session.\n\n   🤖 Generated with [Claude Code](https://claude.ai/code)\n\n   Co-Authored-By: Claude <noreply@anthropic.com>\n   EOF\n   )\")",
+      "Bash(git commit -m \"$(cat <<'EOF'\n   Fix: Correct --resume mode command and help message in startClaudeBridge\n\n   - Corrected the help message to accurately reflect the new --resume mode, changing \"claude --resume\" to \"claude-bridge --resume\".\n   - Updated the quick start logic to execute `claude-bridge --resume` when the `QUICK_START` setting is enabled and the `--resume` flag is not explicitly provided, ensuring consistency with the new feature.\n\n   🤖 Generated with [Claude Code](https://claude.ai/code)\n\n   Co-Authored-By: Claude <noreply@anthropic.com>\n   EOF\n   )\")",
+      "Bash(git commit -m \"$(cat <<'EOF'\n   Chore: Add --resume mode to startClaudeBridge script\n\n   This commit introduces a new functionality to the startClaudeBridge script, allowing users to start the bridge in a 'resume' mode. This mode executes 'claude-bridge --resume', which is useful for picking up previous sessions.\n\n   The following changes were made:\n   - Added a new usage example for the --resume flag in the script's help section.\n   - Implemented conditional logic to detect the --resume flag and execute 'claude-bridge --resume'.\n   - Ensured that the quick start mode also uses 'claude-bridge --resume' for consistency.\n\n   🤖 Generated with [Claude Code](https://claude.ai/code)\n\n   Co-Authored-By: Claude <noreply@anthropic.com>\n   EOF\n   )\")"
     ],
     "deny": []
   }

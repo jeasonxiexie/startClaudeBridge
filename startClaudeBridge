@@ -6,7 +6,7 @@
 # Usage:
 #   startClaudeBridge           - Use default configuration (quick start)
 #   startClaudeBridge -p        - Force interactive prompt mode
-#   startClaudeBridge --prompt  - Force interactive prompt mode
+#   startClaudeBridge --resume  - Resume the last session with claude-bridge --resume
 #   startClaudeBridge -h        - Show help
 
 CONFIG_DIR="$HOME/.claudebridge"
@@ -198,6 +198,7 @@ show_help() {
     echo "  startClaudeBridge           使用默认配置快速启动"
     echo "  startClaudeBridge -p        强制进入交互选择模式"
     echo "  startClaudeBridge --prompt  强制进入交互选择模式"
+    echo "  startClaudeBridge --resume  恢复上次会话 (执行 claude-bridge --resume)"
     echo "  startClaudeBridge -h        显示此帮助信息"
     echo "  startClaudeBridge --help    显示此帮助信息"
     echo
@@ -224,6 +225,11 @@ main() {
     if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
         show_help
         exit 0
+    elif [[ "$1" == "--resume" ]]; then
+        echo -e "${BLUE}正在使用 --resume 模式启动...${NC}"
+        echo
+        claude-bridge --resume
+        exit 0
     elif [[ "$1" == "-p" ]] || [[ "$1" == "--prompt" ]]; then
         FORCE_PROMPT=true
     fi
@@ -246,11 +252,11 @@ main() {
             IFS='|' read -r API_KEY BASE_URL <<< "$API_KEY_DATA"
             
             echo -e "${YELLOW}执行命令:${NC}"
-            echo "claude-bridge openai $DEFAULT_MODEL --baseURL $BASE_URL --apiKey $API_KEY"
+            echo "claude-bridge openai $DEFAULT_MODEL --baseURL $BASE_URL --apiKey $API_KEY --resume"
             echo
             
             # Execute the command
-            claude-bridge openai "$DEFAULT_MODEL" --baseURL "$BASE_URL" --apiKey "$API_KEY"
+            claude-bridge openai "$DEFAULT_MODEL" --baseURL "$BASE_URL" --apiKey "$API_KEY" --resume
             exit 0
         fi
     fi
@@ -294,11 +300,11 @@ main() {
     
     echo
     echo -e "${YELLOW}执行命令:${NC}"
-    echo "claude-bridge openai $MODEL_ID --baseURL $BASE_URL --apiKey $API_KEY"
+    echo "claude-bridge openai $MODEL_ID --baseURL $BASE_URL --apiKey $API_KEY --resume"
     echo
     
     # Execute the command
-    claude-bridge openai "$MODEL_ID" --baseURL "$BASE_URL" --apiKey "$API_KEY"
+    claude-bridge openai "$MODEL_ID" --baseURL "$BASE_URL" --apiKey "$API_KEY" --resume
 }
 
 # Check if claude-bridge command exists
